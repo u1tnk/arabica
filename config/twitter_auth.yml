@@ -1,0 +1,28 @@
+development:
+  strategy: oauth
+  oauth_consumer_key: kYVw4rUSRxoR9zK7tYErA
+  oauth_consumer_secret: 573RRxXnsKRe6aYlzJICkWvh7kDgWO5QebgSb8nU
+  base_url: "https://twitter.com"
+  authorize_path: "/oauth/authenticate"
+  api_timeout: 10
+  remember_for: 14 # days
+  oauth_callback: "http://arabica.tnkf.net/oauth_callback"
+test:
+  strategy: oauth
+  oauth_consumer_key: testkey
+  oauth_consumer_secret: testsecret
+  base_url: "https://twitter.com"
+  authorize_path: "/oauth/authenticate"
+  api_timeout: 10
+  remember_for: 14 # days
+  oauth_callback: "http://localhost:3000/oauth_callback"
+production:
+  strategy: oauth
+  oauth_consumer_key: kYVw4rUSRxoR9zK7tYErA
+  oauth_consumer_secret: 573RRxXnsKRe6aYlzJICkWvh7kDgWO5QebgSb8nU
+  authorize_path: "/oauth/authenticate"
+  base_url: "https://twitter.com"
+  api_timeout: 10
+  remember_for: 14 # days
+  oauth_callback: "http://arabica.heroku.com/oauth_callback"
+

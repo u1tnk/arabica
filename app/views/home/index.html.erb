@@ -1,0 +1,10 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/top/index.html.erb</p>
+<% if current_user %>
+  <%= image_tag current_user.profile_image_url %>
+  <%= current_user.name %>
+  <%= link_to 'Logout', logout_path %>
+<% else %>
+  <%= link_to 'Login', login_path %>
+<% end %>
+

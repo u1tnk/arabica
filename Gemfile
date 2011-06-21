@@ -1,12 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8'
+gem 'rails', '3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'twitter'
 
+gem 'jquery-rails'
+gem 'twitter-auth', :require => 'twitter_auth/engine', :git => 'git://github.com/u1tnk/twitter-auth.git', :branch => 'rails_3.1'
+
+group :development, :test do
+    gem 'rspec-rails', '>=2.0.0'
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 
