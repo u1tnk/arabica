@@ -1,0 +1,10 @@
+<h1>TimeLine#index</h1>
+<p>tweetを読みこみましたl</p>
+<p>整形したURLたちを表示する予定</p>
+
+  <%= @client.home_timeline.each do |r|%>
+  <p>
+    <%= r %>
+    <% break %>
+  </p>
+  <% end %>
