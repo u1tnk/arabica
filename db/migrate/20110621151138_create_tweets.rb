@@ -5,7 +5,6 @@ class CreateTweets < ActiveRecord::Migration
       t.boolean :retweeted
       t.integer :retweet_count
       t.boolean :favorited
-      t.references :user
       t.references :twitter_user
 
       t.timestamps

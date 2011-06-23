@@ -22,6 +22,18 @@ class CreateTwitterUsers < ActiveRecord::Migration
       t.integer :favourites_count
       t.integer :utc_offset
       t.string :time_zone
+      t.boolean :default_profile
+      t.boolean :follow_request_sent
+      t.boolean :notifications
+      t.boolean :following
+      t.integer :listed_count
+      t.boolean :show_all_inline_media
+      t.boolean :geo_enabled
+      t.boolean :profile_use_background_image
+      t.boolean :default_profile_image
+      t.boolean :contributors_enabled
+      t.boolean :verified
+      t.string :lang
 
       t.timestamps
     end
