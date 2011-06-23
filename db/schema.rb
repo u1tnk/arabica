@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110621151138) do
+ActiveRecord::Schema.define(:version => 20110623091057) do
 
   create_table "tweets", :force => true do |t|
     t.text     "text"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(:version => 20110621151138) do
     t.integer  "retweet_count"
     t.boolean  "favorited"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tweets_urls", :id => false, :force => true do |t|
+    t.integer "tweet_id"
+    t.integer "url_id"
+  end
+
+  create_table "urls", :force => true do |t|
+    t.text     "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
