@@ -57,6 +57,6 @@ Arabica::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
   get '/tl/:name' => "time_line#index"
   #name指定無ければログインユーザ 
-  get '/tl' => "time_line#index"
+  get '/tl' => "time_line#index", :as => 'time_lines'
 end
 

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110623101134) do
+ActiveRecord::Schema.define(:version => 20110623142654) do
 
   create_table "tweets", :force => true do |t|
     t.text     "text"
     t.boolean  "retweeted"
     t.integer  "retweet_count"
     t.boolean  "favorited"
-    t.integer  "user_id"
+    t.integer  "twitter_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(:version => 20110623101134) do
   create_table "tweets_urls", :id => false, :force => true do |t|
     t.integer "tweet_id"
     t.integer "url_id"
+  end
+
+  create_table "tweets_users", :id => false, :force => true do |t|
+    t.integer "tweet_id"
+    t.integer "user_id"
   end
 
   create_table "twitter_users", :force => true do |t|
@@ -48,6 +53,18 @@ ActiveRecord::Schema.define(:version => 20110623101134) do
     t.integer  "favourites_count"
     t.integer  "utc_offset"
     t.string   "time_zone"
+    t.boolean  "default_profile"
+    t.boolean  "follow_request_sent"
+    t.boolean  "notifications"
+    t.boolean  "following"
+    t.integer  "listed_count"
+    t.boolean  "show_all_inline_media"
+    t.boolean  "geo_enabled"
+    t.boolean  "profile_use_background_image"
+    t.boolean  "default_profile_image"
+    t.boolean  "contributors_enabled"
+    t.boolean  "verified"
+    t.string   "lang"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
