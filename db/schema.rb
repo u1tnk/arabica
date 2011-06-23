@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110623091057) do
+ActiveRecord::Schema.define(:version => 20110623101134) do
 
   create_table "tweets", :force => true do |t|
     t.text     "text"
@@ -25,6 +25,31 @@ ActiveRecord::Schema.define(:version => 20110623091057) do
   create_table "tweets_urls", :id => false, :force => true do |t|
     t.integer "tweet_id"
     t.integer "url_id"
+  end
+
+  create_table "twitter_users", :force => true do |t|
+    t.string   "name"
+    t.string   "screen_name"
+    t.string   "location"
+    t.string   "description"
+    t.string   "profile_image_url"
+    t.string   "url"
+    t.boolean  "protected"
+    t.string   "profile_background_color"
+    t.string   "profile_sidebar_fill_color"
+    t.string   "profile_link_color"
+    t.string   "profile_sidebar_border_color"
+    t.string   "profile_text_color"
+    t.string   "profile_background_image_url"
+    t.boolean  "profile_background_tile"
+    t.integer  "friends_count"
+    t.integer  "statuses_count"
+    t.integer  "followers_count"
+    t.integer  "favourites_count"
+    t.integer  "utc_offset"
+    t.string   "time_zone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "urls", :force => true do |t|
