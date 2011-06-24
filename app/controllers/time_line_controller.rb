@@ -19,11 +19,12 @@ class TimeLineController < ApplicationController
           tweet.users << current_user
 
           #TODO 既存のtwitter_userのときは追加せず参照のみ更新
-          user = r.user.to_hash
-          user.delete 'id_str'
-          user.delete 'is_translator'
-          user.delete 'profile_background_image_url_https'
-          user.delete 'profile_image_url_https'
+          r_user = r.user.to_hash
+          user_keys = TwitterUser.new.attributes.keys & r_user.keys
+          user = {}
+          user_keys.each do |key|
+            user[key] = r_user[key]
+          end
           tweet.twitter_user = TwitterUser.new(user)
 
           tweet.save
