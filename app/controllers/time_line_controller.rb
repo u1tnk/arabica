@@ -22,6 +22,8 @@ class TimeLineController < ApplicationController
           user = r.user.to_hash
           user.delete 'id_str'
           user.delete 'is_translator'
+          user.delete 'profile_background_image_url_https'
+          user.delete 'profile_image_url_https'
           tweet.twitter_user = TwitterUser.new(user)
 
           tweet.save
