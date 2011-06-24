@@ -14,9 +14,15 @@ class Url < ActiveRecord::Base
         urls.each do |url_addr|
           agent.get(url_addr)
 
+          title = if agent.page.header['content-type'] == 'text/html'
+                    agent.page.title
+                  else
+                    'no title'
+                  end
+
           url = Url.new
           url.url = agent.page.uri
-          url.title = 'fuga' # agent.page.title
+          url.title = title
           url.tweets << tweet
 
           url.save
