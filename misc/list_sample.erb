@@ -5,7 +5,10 @@
     <title><%= @user.name %>のURL一覧 : arabica - あなたのタイムラインの気になるURL一覧</title>
   </head>
   <body>
-    <h1 id='logo'>arabica</h1>
+    <h1 id="logo"><span id="logo-inner">arabica</span></h1>
+    <header id="page-header">
+    <img src="<%= @user.icon_url %>" alt="<%= @user.name %>"><p id='username'><%= @user.name %></p>
+    </header>
     <% @urls.each do |url| %>
       <article>
         <header>
@@ -25,7 +28,7 @@
       </article>
     <% end %>
   </body>
-  <footer id="page_fotter">
+  <footer id="page_footer">
     <p>arabica is created by mokha mattari</p>
   </footer>
 </html>
