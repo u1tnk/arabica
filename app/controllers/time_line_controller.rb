@@ -6,29 +6,8 @@ class TimeLineController < ApplicationController
       # 初回アクセス時は現在のtime_lineから200件取り込む
       unless current_user.tweets.exists?
         @client = twitter_client
-        @client.home_timeline(:count => 200).each do |r|
-          tweet = Tweet.new
-          #TODO 既存のtweetのときは追加せず、usersのみ増やす
-
-          tweet[:id] = r.id
-          tweet[:text] = r.text
-          tweet[:retweeted] = r.retweeted
-          tweet[:retweet_count] = r.retweet_count
-          tweet[:favorited] = r.favorited
-          tweet[:created_at] = r.created_at
-          tweet.users << current_user
-
-          #TODO 既存のtwitter_userのときは追加せず参照のみ更新
-          r_user = r.user.to_hash
-          user_keys = TwitterUser.new.attributes.keys & r_user.keys
-          user = {}
-          user_keys.each do |key|
-            user[key] = r_user[key]
-          end
-          tweet.twitter_user = TwitterUser.new(user)
-
-          tweet.save
-        end
+        raw_tweets = @client.home_timeline(:count => 200)
+        Url.filter_urls_from_tweets current_user, raw_tweets
       end
     end
 
