@@ -9,6 +9,7 @@ gem 'rake', '0.8.7'
 
 gem 'sqlite3'
 gem 'twitter'
+gem 'mechanize', '>=1.0.0'
 
 gem 'jquery-rails'
 gem 'twitter-auth', :require => 'twitter_auth/engine', :git => 'git://github.com/u1tnk/twitter-auth.git', :branch => 'rails_3.1'

@@ -1,21 +1,25 @@
 require 'uri'
-require 'net/http'
+require 'mechanize'
 
 class Url < ActiveRecord::Base
   has_and_belongs_to_many :tweets
 
   class << self
     def filter_urls_from_tweets
+      agent = Mechanize.new
+
       Tweet.all.each do |tweet|
         urls = URI.extract(tweet.text,   ['http', 'https'])
-        unless urls.empty?
-          tmp = Net::HTTP.get_response(URI.parse(urls[0]))
+
+        urls.each do |url_addr|
+          agent.get(url_addr)
 
           url = Url.new
-          url.url = tmp.key?('location') ? tmp['location'] : urls[0]
-          url.title = 'hoge' # tmp.body.scan(/<title>(.*)<\/title>/)
-          url.save
+          url.url = agent.page.uri
+          url.title = 'fuga' # agent.page.title
           url.tweets << tweet
+
+          url.save
         end
       end
     end
