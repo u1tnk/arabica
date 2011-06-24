@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title><%= @user.name %>のURL一覧 : arabica - あなたのタイムラインの気になるURL一覧</title>
   </head>
   <body>
-    <h1>arabica</h1>
+    <h1 id='logo'>arabica</h1>
     <% @urls.each do |url| %>
       <article>
         <header>
@@ -24,7 +25,7 @@
       </article>
     <% end %>
   </body>
-  <footer>
+  <footer id="page_fotter">
     <p>arabica is created by mokha mattari</p>
   </footer>
 </html>

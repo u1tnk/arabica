@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#logo {
+  font-family: "Times New Roman";
+  font-size: 40px;
+
+  border-bottom: 4px #f57900 solid;
+}
+
+#page_fotter {
+  color: #999999;
+  text-align: center;
+}
+
+article {
+  margin-left: 200px;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 600px;
+  border-left: 2px #cccccc solid;
+  border-right: 2px #cccccc solid;
+}
+
+article footer {
+  padding: 10px;
+  border: 1px #cccccc solid;
+  border-radius: 25px;
+}
