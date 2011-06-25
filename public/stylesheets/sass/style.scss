@@ -1,5 +1,5 @@
 
-$basecolor: #f8c864;
+$basecolor: #ff6600;
 $subcolor: #cccccc;
 
 * {
@@ -76,14 +76,22 @@ article {
 }
 
 article header {
-  font-size: 120%;
-
+  a {
+    text-decoration: none;
+  }
 }
 
 article footer {
+  color: #999999;
+  font-size: 85%;
   padding: 10px;
   border: 1px $subcolor solid;
   border-radius: 25px;
+}
+
+.twitter-icon {
+  width: 24px;
+  height: 24px;
 }
 
 ////////////////////////////////////////////////////////////
