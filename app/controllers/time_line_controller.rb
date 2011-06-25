@@ -13,11 +13,6 @@ class TimeLineController < AuthorizedController
       @user = current_user
       @urls = @user.tweets.map{|t|t.urls}.flatten
 
-      @tweet_icons = {}
-      @urls.uniq.each do |url|
-        @tweet_icons[url.url] = url.tweets.map {|tw| TwitterUser.find(tw.twitter_user_id).profile_image_url}
-      end
-
       @urls.uniq!
 
       # @urls = @user.tweets.map{|t|t.urls}.flatten.uniq {|a| a.url}

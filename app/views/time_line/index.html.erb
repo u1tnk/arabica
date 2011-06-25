@@ -4,14 +4,15 @@
     <h1><a href="<%= url.url %>"><%= url.title %></a></h1>
     </header>
     <p class='description'>
-      <% @tweet_icons[url.url].uniq.each do |profile_image_url| %>
-        <img class="twitter-icon" src="<%= profile_image_url %>">
-      <% end %>
     </p>
     <footer>
       <ul>
-      <li><%= url.url %></li>
-      <li><%= url.created_at %></li>
+        <li>
+          <% url.tweets.each do |tweet| %>
+            <img class="twitter-icon" src="<%= tweet.twitter_user.profile_image_url %>">
+            <%= tweet.text %>
+          <% end %>
+        </li>
       </ul>
     </footer>
   </article>
