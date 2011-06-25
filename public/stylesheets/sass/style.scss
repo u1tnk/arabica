@@ -95,11 +95,14 @@ body{
     padding-bottom: 16px;
     margin-bottom: 16px;
     border-bottom: 1px $subcolor solid;
+    h2{
+      font-size: 1.25em;    
+    }
   }
 
   article footer {
     padding-left: 2em;
-    font-size: 85%;
+    font-size: 0.75em;
     li {
       list-style-type: none;
     }
