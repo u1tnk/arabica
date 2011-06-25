@@ -1,0 +1,92 @@
+
+$basecolor: #f8c864;
+$subcolor: #cccccc;
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+////////////////////////////////////////////////////////////
+// logo
+
+#logo {
+  $wordsize: 60px;
+  height: $wordsize;
+  padding-left: $wordsize;
+  font-family: "Times New Roman";
+  font-size: $wordsize;
+
+  border-bottom: 4px $basecolor solid;
+  color: $basecolor;
+  text-shadow: 0.05em 0.05em 0.05em $subcolor;
+}
+
+#logo-inner {
+  // background-color: #cccccc;
+}
+
+////////////////////////////////////////////////////////////
+// header
+
+#page-header {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  height: 30px;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  background-color: white;
+
+  border-left: 4px $basecolor solid;
+  border-top: 4px $basecolor solid;
+  border-top-left-radius: 30px;
+
+  img, p {
+    display: inline;
+  }
+
+  text-align: right;
+}
+
+#page-header img {
+  padding-top: 6px;
+  padding-right: 6px;
+  width: 20px;
+  height: 20px;
+}
+
+////////////////////////////////////////////////////////////
+// article
+
+article {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 600px;
+  border-left: 2px $subcolor dotted;
+  border-right: 2px $subcolor dotted;
+}
+
+article header {
+  font-size: 120%;
+
+}
+
+article footer {
+  padding: 10px;
+  border: 1px $subcolor solid;
+  border-radius: 25px;
+}
+
+////////////////////////////////////////////////////////////
+// footer
+
+#page_footer {
+  color: #999999;
+  text-align: center;
+  border-top: 1px $subcolor solid;
+}
+

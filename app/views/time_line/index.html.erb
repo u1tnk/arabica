@@ -1,4 +1,23 @@
-<h1>time line</h1>
-<p>タイムラインを表示します</p>
 
-<%= debug @var  %>
+<h1 id="logo"><span id="logo-inner">arabica</span></h1>
+<header id="page-header">
+<img src="<%= @user.profile_image_url %>" alt="<%= @user.name %>"><p id='username'><%= @user.login %></p>
+</header>
+<% @urls.each do |url| %>
+  <article>
+    <header>
+      <h1><%= url.title %></h1>
+    </header>
+    <p class='description'>
+      <%= url.description %>
+    </p>
+    <footer>
+      <p><%= url.address %></p>
+      <ul>
+      <% url.tweets.each do |tweet| %>
+      <li><a href="<%= tweet.url %>"><img src="<%= tweet.user.icon %>" alt="<%= tweet.user %>" ></a></li>
+      <% end %>
+      </ul>
+    </footer>
+  </article>
+<% end %>

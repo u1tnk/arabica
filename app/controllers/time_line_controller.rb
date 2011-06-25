@@ -9,8 +9,11 @@ class TimeLineController < ApplicationController
         raw_tweets = @client.home_timeline(:count => 200)
         Url.filter_urls_from_tweets current_user, raw_tweets
       end
-    end
 
+      @user = current_user
+      @urls = []
+      # ,@urls = Url.filter_urls_from_tweets(@user, @user.tweets)
+    end
   end
 
 end
