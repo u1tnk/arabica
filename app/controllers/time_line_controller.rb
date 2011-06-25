@@ -1,4 +1,4 @@
-class TimeLineController < ApplicationController
+class TimeLineController < AuthorizedController
   def index
     name =  params[:name]
     unless name
