@@ -1,3 +1,10 @@
+////////////////////////////////////////////////////////////
+// common
+@mixin radius($size) {
+  border-radius: $size;
+  -webkit-border-radius: $size;
+  -moz-border-radius: $size;
+}
 
 $basecolor: #ff6600;
 $subcolor: #cccccc;
@@ -7,51 +14,65 @@ $subcolor: #cccccc;
   margin: 0;
 }
 
-////////////////////////////////////////////////////////////
-// logo
-
-#logo-inner {
-  // background-color: #cccccc;
+body{
+  background-color: darken( $subcolor, 10%);
 }
+
+////////////////////////////////////////////////////////////
+// container
+#container{
+  width: 800px;
+  margin: 1em auto 1em auto;
+  padding: 1em;
+
+  background-color: lighten( $subcolor, 13%);
+  @include radius(1em);
+}
+
 
 ////////////////////////////////////////////////////////////
 // header
 
 #page-header {
-  $wordsize: 60px;
+  $wordsize: 80px;
   height: $wordsize + 10px;
-  padding-left: $wordsize;
+  padding-left: 1em;
   border-bottom: 4px $basecolor solid;
-  .user {
-    position: absolute;
-    top: $wordsize / 2;
-    right: 0;
-    height: $wordsize / 2 + 10px;
-    padding-left: 2em;
-    padding-right: 2em;
-
-    background-color: white;
-
-    border-left: 4px $basecolor solid;
-    border-top: 4px $basecolor solid;
-    border-top-left-radius: 30px;
-    a {
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  }
+  background-color: $basecolor;
+  @include radius(1em);
 
   .logo {
+    float: left;
     a {
       font-family: "Times New Roman";
       font-size: $wordsize;
-      color: $basecolor;
-      text-shadow: 0.05em 0.05em 0.05em $subcolor;
+      color: black;
+      text-shadow: 0.05em 0.05em 0.05em white;
       text-decoration: none;
     }
   }
+  .user {
+    width: 20%;
+    float: right;
+    margin-top: $wordsize / 2;
+    height: $wordsize / 2 + 10px;
+    padding: 0 2em 0 2em;
+
+    background-color: lighten( $subcolor, 13%);
+
+    border-left: 4px $basecolor solid;
+    border-top: 4px $basecolor solid;
+    border-top-left-radius: 1em;
+    div {
+      text-align: right;
+      padding-top: 0.5em;
+      a {
+        padding:0 0.5em 0 0.5em;
+        vertical-align: bottom;
+      }
+    }
+  }
+
 
   img {
     padding-top: 6px;
@@ -63,43 +84,40 @@ $subcolor: #cccccc;
 
 
 ////////////////////////////////////////////////////////////
-// article
+// content
 
-article {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1em;
-  padding-right: 1em;
-  width: 600px;
-  border-left: 2px $subcolor dotted;
-  border-right: 2px $subcolor dotted;
-}
+#content{
+  padding: 1em;
 
-article header {
-  a {
-    text-decoration: none;
+  article footer {
+    padding-left: 2em;
+    color: #999999;
+    font-size: 85%;
   }
-}
 
-article footer {
-  color: #999999;
-  font-size: 85%;
-  padding: 10px;
-  border: 1px $subcolor solid;
-  border-radius: 25px;
-}
-
-.twitter-icon {
-  width: 24px;
-  height: 24px;
+  .twitter-icon {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 ////////////////////////////////////////////////////////////
 // footer
 
 #page_footer {
-  color: #999999;
-  text-align: center;
-  border-top: 1px $subcolor solid;
+  padding: 1em;
+  border-top: 1px $basecolor solid;
 }
 
+////////////////////////////////////////////////////////////
+// link
+a {
+  color: $basecolor;
+  text-decoration: none;
+}
+a:visited {
+  color: darken( $basecolor, 10% );
+}
+a:hover {
+  text-decoration: underline;
+}
