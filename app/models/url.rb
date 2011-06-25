@@ -69,7 +69,6 @@ class Url < ActiveRecord::Base
 
         tweet.twitter_user = twitter_user
         tweet.save
-        return
       end
     end
   end
