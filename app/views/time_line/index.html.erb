@@ -7,12 +7,12 @@
     </p>
     <footer>
       <ul>
+        <% url.tweets.each do |tweet| %>
         <li>
-          <% url.tweets.each do |tweet| %>
             <img class="twitter-icon" src="<%= tweet.twitter_user.profile_image_url %>">
             <%= tweet.text %>
-          <% end %>
         </li>
+          <% end %>
       </ul>
     </footer>
   </article>

@@ -89,6 +89,10 @@ body{
 #content{
   padding: 1em;
 
+  article {
+    margin-bottom: 24px;
+  }
+
   article footer {
     padding-left: 2em;
     font-size: 85%;
@@ -101,6 +105,7 @@ body{
     width: 24px;
     height: 24px;
   }
+
 }
 
 ////////////////////////////////////////////////////////////
