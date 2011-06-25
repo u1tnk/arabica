@@ -12,6 +12,7 @@ class TimeLineController < AuthorizedController
 
       @user = current_user
       @urls = @user.tweets.map{|t|t.urls}.flatten.uniq {|a| a.url}
+      @twitter_users = TwitterUser
     end
   end
 end

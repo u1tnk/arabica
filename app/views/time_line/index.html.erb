@@ -6,17 +6,17 @@
 <% @urls.each do |url| %>
   <article>
     <header>
-      <h1><%= url.title %></h1>
+    <h1><a href="<%= url.url %>"><%= url.title %></a></h1>
     </header>
     <p class='description'>
-      <%= url.created_at %>
+      <% url.tweets.each do |tweet| %>
+        <img class="twitter-icon" src="<%= @twitter_users.find(tweet.twitter_user_id).profile_image_url %>">
+      <% end %>
     </p>
     <footer>
-      <p><%= url.url %></p>
       <ul>
-      <% [].each do |tweet| %>
-        <!-- <li><a href="<%= tweet.url %>"><img src="<%= tweet.user.icon %>" alt="<%= tweet.user %>" ></a></li> -->
-      <% end %>
+      <li><%= url.url %></li>
+      <li><%= url.created_at %></li>
       </ul>
     </footer>
   </article>
