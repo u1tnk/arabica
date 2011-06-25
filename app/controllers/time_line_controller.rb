@@ -11,8 +11,7 @@ class TimeLineController < ApplicationController
       end
 
       @user = current_user
-      @urls = @user.tweets.map{|t|t.urls}.flatten
+      @urls = @user.tweets.map{|t|t.urls}.flatten.uniq {|a| a.url}
     end
   end
-
 end
