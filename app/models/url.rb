@@ -24,7 +24,7 @@ class Url < ActiveRecord::Base
         raw_urls.each do |url_addr|
           agent.get(url_addr)
 
-          title = if agent.page.header['content-type'] == 'text/html'
+          title = if /text\/html/ =~ agent.page.header['content-type']
                     agent.page.title
                   else
                     'no title'
