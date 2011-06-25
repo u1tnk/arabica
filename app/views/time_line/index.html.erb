@@ -4,8 +4,8 @@
     <h1><a href="<%= url.url %>"><%= url.title %></a></h1>
     </header>
     <p class='description'>
-      <% url.tweets.each do |tweet| %>
-        <img class="twitter-icon" src="<%= @twitter_users.find(tweet.twitter_user_id).profile_image_url %>">
+      <% @tweet_icons[url.url].uniq.each do |profile_image_url| %>
+        <img class="twitter-icon" src="<%= profile_image_url %>">
       <% end %>
     </p>
     <footer>

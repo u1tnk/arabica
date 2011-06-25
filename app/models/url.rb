@@ -31,11 +31,14 @@ class Url < ActiveRecord::Base
                     'no title'
                   end
 
-          url = Url.new
-          url.url = agent.page.uri.to_s
-          url.title = title
+          url = Url.where(:url => agent.page.uri.to_s)
+          if url.empty?
+            url = Url.new
+            url.url = agent.page.uri.to_s
+            url.title = title
 
-          url.save
+            url.save
+          end
           urls << url
           rescue
             # 404をスルー
