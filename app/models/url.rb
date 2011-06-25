@@ -9,7 +9,16 @@ class Url < ActiveRecord::Base
       agent = Mechanize.new
 
       raw_tweets.each do |r|
+
         raw_urls = URI.extract(r.text, ['http', 'https'])
+        next if raw_urls.empty?
+        if Tweet.exists? r.id
+          tweet = Tweet.find r.id
+          next if tweet.users.include? user
+          tweet.users << user
+          tweet.save
+          next
+        end
 
         urls = []
         raw_urls.each do |url_addr|
@@ -28,7 +37,6 @@ class Url < ActiveRecord::Base
           url.save
           urls << url
         end
-        #TODO 既存のtweetのときは追加せず、usersのみ増やす
 
         tweet = Tweet.new
         tweet[:id] = r.id
@@ -40,16 +48,28 @@ class Url < ActiveRecord::Base
         tweet.users << user
         tweet.urls << urls
 
-        #TODO 既存のtwitter_userのときは追加せず参照のみ更新
         raw_user = r.user.to_hash
-        user_keys = TwitterUser.new.attributes.keys & raw_user.keys
-        twitter_user = {}
-        user_keys.each do |key|
-          twitter_user[key] = raw_user[key]
-        end
-        tweet.twitter_user = TwitterUser.new(twitter_user)
+        twitter_user_id = raw_user['id']
+        twitter_user = nil
+        if TwitterUser.exists? twitter_user_id
+          twitter_user = TwitterUser.find twitter_user_id
+        else
+          user_keys = TwitterUser.new.attributes.keys & raw_user.keys
 
+          twitter_user_hash = {}
+          user_keys.each do |key|
+            twitter_user_hash[key] = raw_user[key]
+          end
+
+          twitter_user = TwitterUser.new(twitter_user_hash)
+          twitter_user[:id] = twitter_user_id
+          twitter_user[:created_at] = raw_user['created_at']
+          twitter_user.save
+        end
+
+        tweet.twitter_user = twitter_user
         tweet.save
+        return
       end
     end
   end
