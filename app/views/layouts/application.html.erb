@@ -7,11 +7,13 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<div id="container">
 
 <header id="page-header">
 <h1 class="logo"><a href="/">Arabica</a></h1>
 
 <div class="user">
+  <div>
   <% if current_user %>
     <% link_to time_lines_url do %>
       <%= image_tag current_user.profile_image_url, :alt => current_user.name %>
@@ -19,15 +21,19 @@
     <% end %>
     <%= link_to 'Logout', logout_path %>
   <% else %>
+    <%= image_tag 'spacer.gif' %>
     <%= link_to 'Login', login_path %>
   <% end %>
+  </div>
 </div>
 </header>
-
+<div id="content">
 <%= yield %>
+</div>
 
 <footer id="page_footer">
-  <p>arabica is created by team mokha mattari</p>
+  created by team mokha mattari
 </footer>
+</div>
 </body>
 </html>
