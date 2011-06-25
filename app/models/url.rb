@@ -22,6 +22,7 @@ class Url < ActiveRecord::Base
 
         urls = []
         raw_urls.each do |url_addr|
+          begin
           agent.get(url_addr)
 
           title = if /text\/html/ =~ agent.page.header['content-type']
@@ -36,6 +37,9 @@ class Url < ActiveRecord::Base
 
           url.save
           urls << url
+          rescue
+            # 404をスルー
+          end
         end
 
         tweet = Tweet.new
