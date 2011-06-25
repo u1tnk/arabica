@@ -8,10 +8,26 @@
 </head>
 <body>
 
+<header id="page-header">
+<h1 class="logo"><a href="/">Arabica</a></h1>
+
+<div class="user">
+  <% if current_user %>
+    <% link_to time_lines_url do %>
+      <%= image_tag current_user.profile_image_url, :alt => current_user.name %>
+      <%= current_user.login %>
+    <% end %>
+    <%= link_to 'Logout', logout_path %>
+  <% else %>
+    <%= link_to 'Login', login_path %>
+  <% end %>
+</div>
+</header>
+
 <%= yield %>
 
 <footer id="page_footer">
-  <p>arabica is created by mokha mattari</p>
+  <p>arabica is created by team mokha mattari</p>
 </footer>
 </body>
 </html>

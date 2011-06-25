@@ -10,18 +10,6 @@ $subcolor: #cccccc;
 ////////////////////////////////////////////////////////////
 // logo
 
-#logo {
-  $wordsize: 60px;
-  height: $wordsize;
-  padding-left: $wordsize;
-  font-family: "Times New Roman";
-  font-size: $wordsize;
-
-  border-bottom: 4px $basecolor solid;
-  color: $basecolor;
-  text-shadow: 0.05em 0.05em 0.05em $subcolor;
-}
-
 #logo-inner {
   // background-color: #cccccc;
 }
@@ -30,32 +18,49 @@ $subcolor: #cccccc;
 // header
 
 #page-header {
-  position: absolute;
-  top: 30px;
-  right: 0;
-  height: 30px;
-  padding-left: 1em;
-  padding-right: 1em;
+  $wordsize: 60px;
+  height: $wordsize + 10px;
+  padding-left: $wordsize;
+  border-bottom: 4px $basecolor solid;
+  .user {
+    position: absolute;
+    top: $wordsize / 2;
+    right: 0;
+    height: $wordsize / 2 + 10px;
+    padding-left: 2em;
+    padding-right: 2em;
 
-  background-color: white;
+    background-color: white;
 
-  border-left: 4px $basecolor solid;
-  border-top: 4px $basecolor solid;
-  border-top-left-radius: 30px;
-
-  img, p {
-    display: inline;
+    border-left: 4px $basecolor solid;
+    border-top: 4px $basecolor solid;
+    border-top-left-radius: 30px;
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 
-  text-align: right;
+  .logo {
+    a {
+      font-family: "Times New Roman";
+      font-size: $wordsize;
+      color: $basecolor;
+      text-shadow: 0.05em 0.05em 0.05em $subcolor;
+      text-decoration: none;
+    }
+  }
+
+  img {
+    padding-top: 6px;
+    padding-right: 6px;
+    width: 32px;
+    height: 32px;
+  }
 }
 
-#page-header img {
-  padding-top: 6px;
-  padding-right: 6px;
-  width: 20px;
-  height: 20px;
-}
 
 ////////////////////////////////////////////////////////////
 // article
