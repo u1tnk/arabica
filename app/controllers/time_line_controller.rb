@@ -11,8 +11,7 @@ class TimeLineController < ApplicationController
       end
 
       @user = current_user
-      @urls = []
-      # ,@urls = Url.filter_urls_from_tweets(@user, @user.tweets)
+      @urls = @user.tweets.map{|t|t.urls}.flatten
     end
   end
 

@@ -9,13 +9,13 @@
       <h1><%= url.title %></h1>
     </header>
     <p class='description'>
-      <%= url.description %>
+      <%= url.created_at %>
     </p>
     <footer>
-      <p><%= url.address %></p>
+      <p><%= url.url %></p>
       <ul>
-      <% url.tweets.each do |tweet| %>
-      <li><a href="<%= tweet.url %>"><img src="<%= tweet.user.icon %>" alt="<%= tweet.user %>" ></a></li>
+      <% [].each do |tweet| %>
+        <!-- <li><a href="<%= tweet.url %>"><img src="<%= tweet.user.icon %>" alt="<%= tweet.user %>" ></a></li> -->
       <% end %>
       </ul>
     </footer>
