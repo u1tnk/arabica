@@ -31,7 +31,7 @@ class Url < ActiveRecord::Base
                   end
 
           url = Url.new
-          url.url = agent.page.uri
+          url.url = agent.page.uri.to_s
           url.title = title
 
           url.save
