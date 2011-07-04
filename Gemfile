@@ -12,6 +12,8 @@ gem 'twitter'
 gem 'mechanize', '>=1.0.0'
 gem 'sass'
 
+gem 'delayed_job'
+
 gem 'jquery-rails'
 gem 'twitter-auth', :require => 'twitter_auth/engine', :git => 'git://github.com/u1tnk/twitter-auth.git', :branch => 'rails_3.1'
 
