@@ -42,10 +42,16 @@ ActiveRecord::Schema.define(:version => 20110704142200) do
     t.integer "url_id"
   end
 
+  add_index "tweets_urls", ["tweet_id", "url_id"], :name => "index_tweets_urls_on_tweet_id_and_url_id", :unique => true
+  add_index "tweets_urls", ["url_id"], :name => "index_tweets_urls_on_url_id"
+
   create_table "tweets_users", :id => false, :force => true do |t|
     t.integer "tweet_id"
     t.integer "user_id"
   end
+
+  add_index "tweets_users", ["tweet_id", "user_id"], :name => "index_tweets_users_on_tweet_id_and_user_id", :unique => true
+  add_index "tweets_users", ["user_id"], :name => "index_tweets_users_on_user_id"
 
   create_table "twitter_users", :force => true do |t|
     t.string   "name"
@@ -86,10 +92,12 @@ ActiveRecord::Schema.define(:version => 20110704142200) do
 
   create_table "urls", :force => true do |t|
     t.text     "url"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
   end
+
+  add_index "urls", ["url"], :name => "index_urls_on_url", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "twitter_id"
@@ -120,5 +128,7 @@ ActiveRecord::Schema.define(:version => 20110704142200) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end

@@ -36,6 +36,7 @@ class TwitterAuthMigration < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :users, :login, :unique => true
   end
 
   def self.down
