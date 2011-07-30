@@ -21,10 +21,5 @@ class TimeLineController < AuthorizedController
         users.id = ?
     ";
     @urls = Url.find_by_sql [sql, @user.id]
-    return
-    @urls = Url.join("tweets_users").limit(5)
-    p "aa"
-    p @urls.size
-    p "aa"
   end
 end
