@@ -40,13 +40,14 @@ class User < TwitterAuth::GenericUser
       raw_urls.each do |url_addr|
         begin
           agent.get(url_addr)
-
-          title = if /text\/html/ =~ agent.page.header['content-type']
-                    agent.page.title
-                  else
-                    'no title'
-                  end
-
+          title = nil
+          if /text\/html/ =~ agent.page.header['content-type']
+            title = agent.page.title
+            #p "canonival"
+            #p agent.at("link[@rel='canonical']")
+          else
+            title = 'no title'
+          end
           url = Url.where(:url => agent.page.uri.to_s)
           if url.empty?
             url = Url.new
