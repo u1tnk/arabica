@@ -1,5 +1,5 @@
 class CreateUrls < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :urls do |t|
       t.text :url
       t.string :title
@@ -7,9 +7,5 @@ class CreateUrls < ActiveRecord::Migration
       t.timestamps
     end
     add_index :urls, :url, :unique => true
-  end
-
-  def self.down
-    drop_table :urls
   end
 end

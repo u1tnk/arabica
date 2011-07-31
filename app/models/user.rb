@@ -1,16 +1,31 @@
-class User < TwitterAuth::GenericUser
+class User < ActiveRecord::Base
   # Extend and define your user model as you see fit.
   # All of the authentication logic is handled by the
   # parent TwitterAuth::GenericUser class.
   has_and_belongs_to_many :tweets
 
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      auth_user = auth['extra']["user_hash"]
+      token = auth['extra']['access_token']
+
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.name = auth_user['name']
+      user.screen_name = auth_user['screen_name']
+      user.profile_image_url = auth_user['profile_image_url']
+      user.access_token = token.token
+      user.access_secret = token.secret
+    end
+  end
   def twitter_client
+pp OmniAuth.methods
     @client = Twitter::Client.new(
       :format => "json", 
-      :consumer_key => TwitterAuth.config['oauth_consumer_key'] , 
-      :consumer_secret => TwitterAuth.config['oauth_consumer_secret'], 
-      :oauth_token => self.access_token, 
-      :oauth_token_secret => self.access_secret
+      :consumer_key => ENV['ARABICA_CONSUMER'] , 
+      :consumer_secret => ENV['ARABICA_CONSUMER_SECRET'], 
+      :oauth_token => access_token, 
+      :oauth_token_secret => access_secret
     )
   end
 

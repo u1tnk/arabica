@@ -10,7 +10,7 @@
         <% url.tweets.each do |tweet| %>
         <li>
             <img class="twitter-icon" src="<%= tweet.twitter_user.profile_image_url %>">
-            <%= raw auto_link tweet.text %>
+            <%= tweet.text %>
         </li>
           <% end %>
       </ul>

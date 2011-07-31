@@ -15,14 +15,14 @@
 <div class="user">
   <div>
   <% if current_user %>
-    <% link_to time_lines_url do %>
-      <%= image_tag current_user.profile_image_url, :alt => current_user.name %>
-      <%= current_user.login %>
+    <%= link_to time_lines_url do %>
+      <%= image_tag current_user.profile_image_url, :alt => current_user.screen_name %>
+      <%= current_user.screen_name %>
     <% end %>
     <%= link_to 'Logout', logout_path %>
   <% else %>
     <%= image_tag 'spacer.gif' %>
-    <%= link_to 'Login', login_path %>
+    <%= link_to 'Login', '/auth/twitter' %>
   <% end %>
   </div>
 </div>

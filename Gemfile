@@ -13,7 +13,7 @@ gem 'mechanize', '>=1.0.0'
 
 gem 'delayed_job'
 
-gem 'twitter-auth', :require => 'twitter_auth/engine', :git => 'git://github.com/u1tnk/twitter-auth.git', :branch => 'rails_3.1'
+gem 'omniauth', '>=0.2'
 
 group :development, :test do
     gem 'rspec-rails', '>=2.0.0'

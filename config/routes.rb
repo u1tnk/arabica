@@ -55,8 +55,13 @@ Arabica::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-  get '/tl/:name' => "time_line#index"
+  get '/tl/:screen_name' => "time_line#index"
   #name指定無ければログインユーザ 
   get '/tl' => "time_line#index", :as => 'time_lines'
+
+  #omniauth
+  match "/auth/:provider/callback" => "sessions#callback"
+  match "/auth/failure" => "sessions#failure"
+  match "/logout" => "sessions#destroy", :as => :logout
 end
 
