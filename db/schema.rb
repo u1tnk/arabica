@@ -37,17 +37,21 @@ ActiveRecord::Schema.define(:version => 20110704142200) do
     t.datetime "updated_at"
   end
 
-  create_table "tweets_urls", :id => false, :force => true do |t|
-    t.integer "tweet_id"
-    t.integer "url_id"
+  create_table "tweets_urls", :force => true do |t|
+    t.integer  "tweet_id"
+    t.integer  "url_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "tweets_urls", ["tweet_id", "url_id"], :name => "index_tweets_urls_on_tweet_id_and_url_id", :unique => true
   add_index "tweets_urls", ["url_id"], :name => "index_tweets_urls_on_url_id"
 
-  create_table "tweets_users", :id => false, :force => true do |t|
-    t.integer "tweet_id"
-    t.integer "user_id"
+  create_table "tweets_users", :force => true do |t|
+    t.integer  "tweet_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "tweets_users", ["tweet_id", "user_id"], :name => "index_tweets_users_on_tweet_id_and_user_id", :unique => true

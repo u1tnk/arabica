@@ -1,8 +1,5 @@
-require 'uri'
-require 'mechanize'
-
 class Url < ActiveRecord::Base
-  has_and_belongs_to_many :tweets
-
+  has_many :tweets_urls
+  has_many :tweets, :through =>:tweets_urls
 end
 

@@ -1,5 +1,6 @@
 class Tweet < ActiveRecord::Base
-  belongs_to :twitter_user
-  has_and_belongs_to_many :urls
-  has_and_belongs_to_many :users
+  has_many :tweets_users
+  has_many :tweets_urls
+  has_many :users, :through => :tweets_users
+  has_many :urls, :through => :tweets_urls
 end
