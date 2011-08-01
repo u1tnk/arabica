@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     param.merge! args
 
     raw_tweets = twitter_client.home_timeline(:count => param[:max])
-    self.collect_urls_from_tweets raw_tweets
+    collect_urls_from_tweets raw_tweets
   end
   def collect_urls_from_tweets raw_tweets
     agent = Mechanize.new
