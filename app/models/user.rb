@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
     end
   end
   def twitter_client
+    return @client if @client
     @client = Twitter::Client.new(
       :format => "json", 
       :consumer_key => ENV['ARABICA_CONSUMER'] , 
