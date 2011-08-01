@@ -33,7 +33,11 @@ class User < ActiveRecord::Base
     param = {:max => 50}
     param.merge! args
 
-    raw_tweets = twitter_client.home_timeline(:count => param[:max])
+    raw_tweets = twitter_client.home_timeline(
+      :count => param[:max], 
+      :include_entities => true,
+      :trim_user => true
+    )
     collect_urls_from_tweets raw_tweets
   end
   def collect_urls_from_tweets raw_tweets
@@ -41,28 +45,29 @@ class User < ActiveRecord::Base
 
     raw_tweets.each do |r|
 
-      raw_urls = URI.extract(r.text, ['http', 'https'])
-      next if raw_urls.empty?
+      raw_urls = r.entities.urls
+      next if raw_urls == nil || raw_urls.empty?
       if Tweet.exists? r.id
         tweet = Tweet.find r.id
         next if tweet.users.include? self
         tweet.users << self
-        tweet.save
         next
       end
 
       urls = []
-      raw_urls.each do |url_addr|
+      raw_urls.each do |raw_url|
+        #twitterが展開してくれてる場合はそちらを使用
+        request_url = raw_url.expand_url ? raw_url.expand_url : raw_url.url
         begin
-          agent.get(url_addr)
+          agent.get(request_url)
           title = nil
           if /text\/html/ =~ agent.page.header['content-type']
             title = agent.page.title
-            #p "canonival"
             #p agent.at("link[@rel='canonical']")
           else
-            title = 'no title'
+            title = File.basename(agent.page.uri.to_s)
           end
+          
           url = Url.where(:url => agent.page.uri.to_s)
           if url.empty?
             url = Url.new
@@ -88,12 +93,12 @@ class User < ActiveRecord::Base
       tweet.users << self
       tweet.urls << urls
 
-      raw_user = r.user.to_hash
-      twitter_user_id = raw_user['id']
+      twitter_user_id = r.user.id
       twitter_user = nil
       if TwitterUser.exists? twitter_user_id
         twitter_user = TwitterUser.find twitter_user_id
       else
+        raw_user = twitter_client.user(twitter_user_id).to_hash
         user_keys = TwitterUser.new.attributes.keys & raw_user.keys
 
         twitter_user_hash = {}
