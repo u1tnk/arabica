@@ -19,6 +19,7 @@ gem 'delayed_job'
 
 group :development, :test do
   gem 'rspec-rails', '>=2.0.0'
+  gem 'prefetch-rspec'
 end
 
 # Gems used only for assets and not required
