@@ -49,7 +49,7 @@ describe User do
     @twitter_user.save
   end
 
-  it "仕様テスト" do
+  it "仕様化テスト" do
     data = {
       :provider => :twitter,
       :uid => @user_id,
